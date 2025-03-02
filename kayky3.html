@@ -61,7 +61,7 @@
     <div class="container">
         <pre id="texto">Kayky3
             Carregando<span class="dots">...</span></pre>
-        <button id="nextButton" onclick="nextPage()">Voltar</button>
+        <button id="nextButton" onclick="nextPage()">Lista de fofura</button>
     </div>
 
     <script>
@@ -69,7 +69,7 @@
         let index = 0;
 
         function startTyping() {
-            document.getElementById("texto").innerHTML = ""; // Limpa as reticências
+            document.getElementById("texto").innerHTML = "";
             typeWriter();
         }
 
@@ -79,15 +79,15 @@
                 index++;
                 setTimeout(typeWriter, 65);
             } else {
-                document.getElementById("nextButton").style.display = "block"; // Exibe o botão após a digitação
+                document.getElementById("nextButton").style.display = "block";
             }
         }
 
         function nextPage() {
-            window.location.href = "index.html"; // Volta para a página inicial ou outra página
+            window.location.href = "lista.html";
         }
 
-        setTimeout(startTyping, 3000); // Espera 3 segundos antes de começar a digitar
+        setTimeout(startTyping, 3000);
 
     </script>
 

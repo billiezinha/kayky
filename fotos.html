@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Momentos</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: rgb(169, 113, 206);
+            color: rgb(41, 36, 36);
+            font-family: 'Georgia', serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 80%;
+            max-width: 500px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .gallery img.active {
+            opacity: 1;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #f8cdda;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nossos Momentos</h1>
+    <div class="gallery">
+        <img src="fotos/foto1.jpg" class="active" alt="Momento 1">
+        <img src="fotos/foto2.jpg" alt="Momento 2">
+        <img src="fotos/foto3.jpg" alt="Momento 3">
+    </div>
+
+    <div class="buttons">
+        <button onclick="prevImage()">◀ Anterior</button>
+        <button onclick="nextImage()">Próximo ▶</button>
+    </div>
+
+    <button onclick="backHome()">Voltar</button>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll(".gallery img");
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.remove("active");
+                if (i === index) img.classList.add("active");
+            });
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        function backHome() {
+            window.location.href = "home.html";
+        }
+    </script>
+
+</body>
+</html>
