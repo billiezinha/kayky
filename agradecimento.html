@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayky3</title>
+    <title>Agradecimento</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: rgb(151, 209, 197);
-            color: rgb(41, 36, 36);
+            background-color: rgb(61, 37, 41);
+            color: white;
             font-family: 'Georgia', serif;
             text-align: center;
             padding: 20px;
@@ -21,37 +21,35 @@
             display: flex;
             flex-direction: column;
         }
-        pre {
-            font-size: 20px;
-            white-space: pre-wrap;
-            text-align: left;
+        h1 {
+            font-size: 24px;
+            white-space: normal;
+            overflow: hidden;
+            border-right: 2px solid white;
+            padding-right: 5px;
+            word-wrap: break-word;
             max-width: 90%;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.2);
+            margin-left: 5%;
+            
         }
-        .dots {
-            font-size: 22px;
-            font-weight: bold;
-            animation: dotsAnimation 1.5s infinite;
+        .blink {
+            animation: blink 0.7s infinite;
         }
-        @keyframes dotsAnimation {
-            0% { content: "."; }
-            33% { content: ".."; }
-            66% { content: "..."; }
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
+
         #nextButton {
             display: none;
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 18px;
             background-color: white;
-            color: rgb(12, 104, 92);
+            color: rgb(61, 37, 41);
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
-            margin-bottom: 50px;
         }
         #nextButton:hover {
             background-color: #f8cdda;
@@ -60,36 +58,29 @@
 </head>
 <body>
     <div class="container">
-        <pre id="texto">Kayky3
-            Carregando<span class="dots">...</span></pre>
-        <button id="nextButton" onclick="nextPage()">Lista de fofura</button>
+        <h1 id="texto"></h1>
+        <button id="nextButton" onclick="nextPage()">Voltar</button>
     </div>
 
     <script>
-        const textoFinal = "O poema ainda não está disponível.";
+        const texto = "Este site foi feito como uma forma de agradecimento por cada momento que você me proporcionou e que marcou a minha vida. Então, obrigado por cada minuto, cada riso, cada instante especial. Você sempre estará gravado em minha alma.";
         let index = 0;
 
-        function startTyping() {
-            document.getElementById("texto").innerHTML = "";
-            typeWriter();
-        }
-
         function typeWriter() {
-            if (index < textoFinal.length) {
-                document.getElementById("texto").innerHTML += textoFinal.charAt(index);
+            if (index < texto.length) {
+                document.getElementById("texto").innerHTML = texto.substring(0, index + 1);
                 index++;
                 setTimeout(typeWriter, 65);
             } else {
+                document.getElementById("texto").classList.remove("blink");
                 document.getElementById("nextButton").style.display = "block";
             }
         }
 
         function nextPage() {
-            window.location.href = "lista.html";
+            window.location.href = "home.html";
         }
-
-        setTimeout(startTyping, 3000);
-
+        window.onload = typeWriter;
     </script>
 
 </body>
