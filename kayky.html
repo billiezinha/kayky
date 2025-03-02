@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayky</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(204, 179, 145);
+            color: rgb(41, 36, 36);
+            font-family: 'Georgia', serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+        pre {
+            font-size: 20px;
+            white-space: pre-wrap; /* Mantém as quebras de linha */
+            text-align: left; /* Alinhar como um poema tradicional */
+            max-width: 90%;
+            max-height: 60vh; /* Limita a altura para evitar que o texto ocupe toda a tela */
+            overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2); /* Fundo leve para destaque */
+        }
+
+        .blink {
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        #nextButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: white;
+            color: rgb(161, 73, 88);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #nextButton:hover {
+            background-color: #f8cdda;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <pre id="texto"></pre>
+        <button id="nextButton" onclick="nextPage()">Avançar</button>
+    </div>
+
+    <script>
+        const texto = `
+kayky
+
+Lembra?
+De quando a gente podia se tocar,
+se olhar, se falar,
+sem ser pelo celular,
+sem pressa, sem medo de ser vulgar?
+
+Se desfrutar,
+sem medo de gostar,
+sem ir pra lá e pra cá,
+só nós dois,
+no nosso lugar?
+
+Isso nunca devia acabar.
+Espero que, até lá,
+eu ainda possa te admirar,
+te escutar, te tocar,
+te falar, te beijar,
+te aproveitar.
+
+Adoro a forma como você se empolga
+quando fala de seus feitos,
+com aquele brilho no olhar
+que quase me desmonta por inteiro.
+
+Mas o fim é próximo.
+Inevitável.
+Isso não significa que meus sentimentos vão sumir.
+Acho que vão congelar
+em alguma parte de mim,
+esperando você ressurgir.
+
+E quando você for,
+ainda vou lembrar.
+Do seu jeito tosco de imitar o meu "ouxi",
+e daquela rosa que lhe trouxe.
+`;
+
+        let index = 0;
+
+        function typeWriter() {
+            if (index < texto.length) {
+                document.getElementById("texto").innerHTML = texto.substring(0, index + 1);
+                index++;
+                setTimeout(typeWriter, 45);
+            } else {
+                document.getElementById("texto").classList.remove("blink");
+                document.getElementById("nextButton").style.display = "block";
+            }
+        }
+
+        function nextPage() {
+            window.location.href = "kayky1.html";
+        }
+
+        window.onload = typeWriter;
+    </script>
+
+</body>
+</html>
