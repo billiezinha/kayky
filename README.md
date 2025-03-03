@@ -1,1 +1,1 @@
-"# kayky" 
+"Este site foi feito como uma forma de agradecimento por cada momento que você me proporcionou e que marcou a minha vida. Então, obrigado por cada minuto, cada riso, cada instante especial. Você sempre estará gravado em minha memória ♡."
