@@ -27,9 +27,12 @@
             white-space: pre-wrap;
             text-align: left;
             max-width: 90%;
-            padding: 10px;
-            border-radius: 5px;
+            max-height: 60vh;
+            padding: 15px;
+            border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.2);
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         .dots {
             font-size: 22px;
@@ -61,26 +64,71 @@
 </head>
 <body>
     <div class="container">
-        <pre id="texto">Kayky3
-            Carregando<span class="dots">...</span></pre>
-        <button id="nextButton" onclick="nextPage()">Lista de fofura</button>
+        <pre id="texto"></pre>
+        <button id="nextButton" onclick="nextPage()">Lista de Coisas Fofas</button>
     </div>
 
     <script>
-        const textoFinal = "O poema ainda não está disponível.";
+        const texto = `
+Kayky3
+
+
+Esse deveria ser o poema dos poemas, o mais bem feito,
+Mas não sei direito, não sou perfeito.
+Não tenho palavras rebuscadas
+Pra falar das sensações que por ti me foram causadas.
+
+O que pode ser dito é que vivi muitas experiências cativantes,
+Que vieram a partir de você,
+Desde o momento em que lhe perguntaram se era gay ou bi,
+Quando me sentei na mesa de Genisbral e você me fez rir,
+Quando, mesmo depois de sumir,
+Foi atrás de mim e me chamou pra sair.
+
+Fora outros momentos...
+Quando entreguei a rosa e recebi o sorriso mais lindo que já vi,
+Quando íamos pra sua casa e ficávamos deitados,
+E às vezes eu brincava porque você virava a bundinha e ficava todo sem gracinha.
+
+De repente, um áudio me falando de casamento e filhos—
+Admito que nunca pensava nisso,
+Mas que por você valia o risco.
+
+Você é tão puro, tão precioso,
+Que, mesmo estando puto comigo, não ficava rancoroso.
+Lembro da vez que te machuquei sendo um imbecil competitivo,
+E é por isso que não minto quando digo:
+Você é o meu tipo, o mais lindo e criativo.
+
+Com receio do fim ser próximo,
+A primeira carta foi entregue.
+Nela, escrevi sobre nossos primeiros momentos
+E, junto, uma roseira,
+Que espero que floresça,
+Tal qual o meu carinho, que nunca te deixa,
+E cresce em silêncio, mas nunca fraqueja.
+
+Durante a viagem, um trecho repetia em minha mente,
+Não é nada diferente, mas algo recorrente:
+"Might not be forever,
+but if it's forever,
+it's even better."
+
+Queria que isso fosse pra sempre, mas se não for, ao menos tive você presente.
+O melhor presente que a vida, o universo ou Deus já me deu.
+Cada momento com você foi um instante gravado na alma,
+Uma chama acesa que o tempo não acalma.
+`;
+
         let index = 0;
 
-        function startTyping() {
-            document.getElementById("texto").innerHTML = "";
-            typeWriter();
-        }
-
         function typeWriter() {
-            if (index < textoFinal.length) {
-                document.getElementById("texto").innerHTML += textoFinal.charAt(index);
+            if (index < texto.length) {
+                document.getElementById("texto").innerHTML = texto.substring(0, index + 1);
                 index++;
-                setTimeout(typeWriter, 65);
+                setTimeout(typeWriter, 45);
             } else {
+                document.getElementById("texto").classList.remove("blink");
                 document.getElementById("nextButton").style.display = "block";
             }
         }
@@ -89,8 +137,7 @@
             window.location.href = "lista.html";
         }
 
-        setTimeout(startTyping, 3000);
-
+        window.onload = typeWriter;
     </script>
 
 </body>

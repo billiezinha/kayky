@@ -9,21 +9,23 @@
         body {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start;
+            min-height: 100vh;
             background-color: rgb(211, 201, 115);
             color: rgb(41, 36, 36);
             font-family: 'Georgia', serif;
             text-align: center;
             padding: 20px;
         }
+
         .container {
             max-width: 600px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20%;
+            margin-top: 5%;
         }
+
         ul {
             list-style-type: none;
             padding: 0;
@@ -33,15 +35,17 @@
             transform: translateY(20px);
             transition: opacity 0.5s ease-in, transform 0.5s ease-in;
         }
+
         li {
             font-size: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             opacity: 0;
             transform: translateY(10px);
         }
+
         #backButton {
             margin-top: 20px;
             padding: 10px 20px;
