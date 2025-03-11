@@ -6,59 +6,62 @@
     <link rel="shortcut icon" href="icones/favicon.T.ico" type="image/x-icon">
     <title>Kayky</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: rgb(204, 179, 145);
-            color: rgb(41, 36, 36);
-            font-family: 'Georgia', serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-        }
-        pre {
-            font-size: 20px;
-            white-space: pre-wrap;
-            text-align: left;
-            max-width: 90%;
-            max-height: 60vh;
-            overflow-y: auto;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(204, 179, 145);
+    color: rgb(41, 36, 36);
+    font-family: 'Georgia', serif;
+    text-align: center;
+    padding: 20px;
+}
 
-        .blink {
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-        #nextButton {
-            display: none;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: white;
-            color: rgb(161, 73, 88);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-bottom: 50px;
-        }
-        #nextButton:hover {
-            background-color: #f8cdda;
-        }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80%; /* Limita o tamanho da largura */
+    height: 90%; /* Limita a altura do container */
+    overflow: hidden; /* Evita o vazamento de conteúdo */
+    position: relative;
+}
+
+pre {
+    font-size: 20px;
+    white-space: pre-wrap;
+    text-align: left;
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    min-height: 200px; /* Impede que o container "quebre" */
+    overflow-y: auto; /* Permite rolagem se necessário */
+    max-height: 80%; /* Limita a altura para evitar que ultrapasse o conteúdo da tela */
+}
+
+#nextButton {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: white;
+    color: rgb(161, 73, 88);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 50px;
+}
+
+#nextButton:hover {
+    background-color: #f8cdda;
+}
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <pre id="texto"></pre>
         <button id="nextButton" onclick="nextPage()">Avançar</button>
     </div>
@@ -105,23 +108,40 @@ e daquela rosa que lhe trouxe.
 `;
 
         let index = 0;
+        let typingInterval;
 
+        // Função para exibir a digitação do poema
         function typeWriter() {
             if (index < texto.length) {
                 document.getElementById("texto").innerHTML = texto.substring(0, index + 1);
                 index++;
-                setTimeout(typeWriter, 45);
+                typingInterval = setTimeout(typeWriter, 45); // Salva o intervalo para poder limpar depois
             } else {
                 document.getElementById("texto").classList.remove("blink");
                 document.getElementById("nextButton").style.display = "block";
             }
         }
 
-        function nextPage() {
-            window.location.href = "kayky2.html";
+        // Função para finalizar a digitação quando clicar fora
+        function handleOutsideClick(event) {
+            const container = document.getElementById("container");
+            if (!container.contains(event.target)) {
+                clearTimeout(typingInterval); // Interrompe a digitação
+                document.getElementById("texto").innerHTML = texto; // Exibe o poema completo
+                document.getElementById("nextButton").style.display = "block"; // Exibe o botão
+                document.removeEventListener("click", handleOutsideClick); // Remove o evento de clique
+            }
         }
 
-        window.onload = typeWriter;
+        // Adiciona o listener de clique fora do container
+        document.addEventListener("click", handleOutsideClick);
+
+        // Função para ir para a próxima página
+        function nextPage() {
+            window.location.href = "kayky2.html"; // Substitua pela próxima página
+        }
+
+        window.onload = typeWriter; // Inicia a digitação do poema
     </script>
 
 </body>
