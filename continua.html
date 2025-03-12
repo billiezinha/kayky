@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icones/favicon.E.ico" type="image/x-icon">
+    <title>Erro - Continuando...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: red;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1, p {
+            font-size: 40px;
+            font-weight: bold;
+            position: relative;
+            opacity: 0;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+
+        .static-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: repeating-linear-gradient(
+                -45deg,
+                rgba(111, 116, 111, 0.1) 0px,
+                rgba(131, 133, 131, 0.1) 1px,
+                transparent 1px,
+                transparent 5px
+            );
+            animation: noiseEffect 0.1s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes noiseEffect {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes typeLine {
+            0% { width: 0; opacity: 0; }
+            100% { width: 100%; opacity: 1; }
+        }
+
+        #texto {
+            font-size: 24px;
+            white-space: pre-wrap;
+            text-align: left;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .line {
+            opacity: 0;
+            border-right: 2px solid red;
+            padding-right: 5px;
+            animation: typeLine 3s steps(30) forwards;
+        }
+
+        .line:nth-child(1) { 
+            animation-delay: 0s;
+        }
+        .line:nth-child(2) { 
+            animation-delay: 2s;
+        }
+        .line:nth-child(3) { 
+            animation-delay: 4s;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Erro! Página em Construção</h1>
+        <div id="texto">
+            <div class="line">Este site</div>
+            <div class="line">Terá</div>
+            <div class="line">continuidade</div>
+        </div>
+    </div>
+
+    <div class="static-background"></div>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = "home.html";
+        }, 7000);
+    </script>
+
+</body>
+</html>
