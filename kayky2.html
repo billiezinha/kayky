@@ -20,6 +20,7 @@
         .container {
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         pre {
             font-size: 20px;
@@ -58,7 +59,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <pre id="texto"></pre>
         <button id="nextButton" onclick="nextPage()">Avançar</button>
     </div>
@@ -82,17 +83,30 @@ Não tenho medo de te trazer uma flor, por que você merece o carinho que te dou
 `;
 
         let index = 0;
+        let typingInterval;
 
         function typeWriter() {
             if (index < texto.length) {
                 document.getElementById("texto").innerHTML = texto.substring(0, index + 1);
                 index++;
-                setTimeout(typeWriter, 45);
+                typingInterval = setTimeout(typeWriter, 45);
             } else {
                 document.getElementById("texto").classList.remove("blink");
                 document.getElementById("nextButton").style.display = "block";
             }
         }
+
+        function handleOutsideClick(event) {
+            const container = document.getElementById("container");
+            if (!container.contains(event.target)) {
+                clearTimeout(typingInterval);
+                document.getElementById("texto").innerHTML = texto;
+                document.getElementById("nextButton").style.display = "block";
+                document.removeEventListener("click", handleOutsideClick);
+            }
+        }
+
+        document.addEventListener("click", handleOutsideClick);
 
         function nextPage() {
             window.location.href = "kayky3.html";
