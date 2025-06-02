@@ -1,88 +1,95 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="icones/favicon.kj.ico" type="image/x-icon">
-    <title>Kayky Jeferson</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: rgb(161, 73, 88);
-            color: white;
-            font-family: 'Georgia', serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-        }
-        h1 {
-            font-size: 24px;
-            white-space: normal;    
-            overflow: hidden;
-            border-right: 2px solid white;
-            padding-right: 5px;
-            word-wrap: break-word;
-            max-width: 90%;
-            margin-left: 5%;
-            
-        }
-        .blink {
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parabéns!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --vermelho: #d32f2f;
+      --branco: #ffffff;
+      --preto: #000000;
+    }
 
-        #nextButton {
-            display: none;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: white;
-            color: rgb(161, 73, 88);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        #nextButton:hover {
-            background-color: #f8cdda;
-        }
-    </style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--preto);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--branco);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+    }
+
+    .line {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      margin: 0 auto 1rem;
+      animation: typing 2s steps(40, end) forwards;
+    }
+
+    .line:nth-child(1)  { animation-delay: 0s; }
+    .line:nth-child(2)  { animation-delay: 2s; }
+    .line:nth-child(3)  { animation-delay: 4s; }
+    .line:nth-child(4)  { animation-delay: 6s; }
+    .line:nth-child(5)  { animation-delay: 8s; }
+    .line:nth-child(6)  { animation-delay: 10s; }
+    .line:nth-child(7)  { animation-delay: 12s; }
+    .line:nth-child(8)  { animation-delay: 14s; }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    .highlight {
+      color: var(--vermelho);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .line {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tempoTotal = 16 * 1000;
+      setTimeout(() => {
+        window.location.href = "aniversario.html";
+      }, tempoTotal);
+    });
+  </script>
 </head>
 <body>
-    <div class="container">
-        <h1 id="texto"></h1>
-        <button id="nextButton" onclick="nextPage()">Avançar</button>
-    </div>
-
-    <script>
-        const texto = "Este não é apenas um site, é uma coleção de sentimentos. Cada poema é uma prova do quanto você me marcou.";
-        let index = 0;
-
-        function typeWriter() {
-            if (index < texto.length) {
-                document.getElementById("texto").innerHTML = texto.substring(0, index + 1);
-                index++;
-                setTimeout(typeWriter, 65);
-            } else {
-                document.getElementById("texto").classList.remove("blink");
-                document.getElementById("nextButton").style.display = "block";
-            }
-        }
-
-        function nextPage() {
-            window.location.href = "kayky.html";
-        }
-        window.onload = typeWriter;
-    </script>
-
+  <div class="container">
+    <div class="line">Como lhe foi dito,</div>
+    <div class="line">este site é <span class="highlight">interativo</span></div>
+    <div class="line">e passa por alterações</div>
+    <div class="line">ao decorrer de eventos</div>
+    <div class="line">e datas comemorativas.</div>
+    <div class="line">Então como parabenização</div>
+    <div class="line">pelo seu aniversário...</div>
+    <div class="line"><span class="highlight">aqui vamos nós.</span></div>
+  </div>
 </body>
 </html>
